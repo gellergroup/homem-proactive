@@ -59,8 +59,9 @@
       #07090D calc(100% - var(--panel) + 3%),
       rgba(7,9,13,0) calc(100% - var(--panel) + 13%)); }
 
-  .hero-caption { position:absolute; inset:auto 0 0 0; padding:0 40px 104px 44%; opacity:0; transition:opacity .5s ease; pointer-events:none; }
-  .hero-caption[data-active="1"] { opacity:1; }
+  /* a legenda que sai some antes da proxima entrar, senao as duas se sobrepoem */
+  .hero-caption { position:absolute; inset:auto 0 0 0; padding:0 40px 104px 44%; opacity:0; transition:opacity .22s ease; pointer-events:none; }
+  .hero-caption[data-active="1"] { opacity:1; transition:opacity .38s ease .24s; }
   .hero-caption .kicker { display:block; font-family:Archivo,sans-serif; font-weight:800; font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:#3B82F6; margin-bottom:6px; }
   .hero-caption .line { display:block; font-family:Archivo,sans-serif; font-weight:800; font-size:22px; line-height:1.15; color:#fff; }
 
@@ -81,7 +82,8 @@
     .hero { display:flex; flex-direction:column; align-items:stretch; min-height:0; padding:0; }
     .hero-inner { order:1; max-width:none; padding:72px 24px 56px; }
     .hero-copy { max-width:none; }
-    .hero-carousel { order:2; position:relative; width:100%; height:420px; }
+    /* as 4 fotos sao 3:4 — o painel adota a mesma proporcao e nada e cortado */
+    .hero-carousel { order:2; position:relative; width:100%; height:auto; aspect-ratio:3/4; max-height:78vh; }
     .hero-veil-x, .hero-edge { display:none; }
     .hero-caption { padding:0 24px 88px; }
     .hero-controls { right:24px; bottom:24px; }
@@ -130,7 +132,8 @@
     .chips { gap:8px !important; }
     .chips span { padding:8px 12px !important; font-size:11px !important; }
 
-    .mentor-img { height:auto !important; aspect-ratio:3/4; }
+    /* proporcao nativa da foto do mentor (949x1400), sem corte */
+    .mentor-img { height:auto !important; aspect-ratio:949/1400; }
     .modulo-card { padding:28px 22px !important; }
 
     /* CTA ocupa a largura toda e perde a sombra deslocada */
@@ -153,16 +156,16 @@
     <div class="hero-carousel">
       <div id="carousel-track" class="hero-track">
         <div class="hero-slide">
-          <img src="uploads/IMG_20180827_224309681_LL.jpg" alt="Passando roupa" style="object-position:60% 30%" />
+          <img src="uploads/IMG_20180827_224309681_LL.jpg" alt="Passando roupa" style="object-position:64% 20%" />
         </div>
         <div class="hero-slide">
-          <img src="uploads/IMG_20221012_173843.jpg" alt="Bolo pronto" style="object-position:55% 25%" />
+          <img src="uploads/IMG_20221012_173843.jpg" alt="Bolo pronto" style="object-position:72% 0%" />
         </div>
         <div class="hero-slide">
-          <img src="uploads/IMG_20241029_211730.jpg" alt="Limpando o chão" style="object-position:50% 40%" />
+          <img src="uploads/IMG_20241029_211730.jpg" alt="Preparando a comida" style="object-position:62% 18%" />
         </div>
         <div class="hero-slide">
-          <img src="uploads/IMG_20230218_014421.jpg" alt="Preparando a comida" style="object-position:55% 35%" />
+          <img src="uploads/IMG_20230218_014421.jpg" alt="Limpando o chão" style="object-position:48% 42%" />
         </div>
       </div>
 
@@ -385,7 +388,7 @@
   <!-- ===== IMAGINE ===== -->
   <section class="sec-flat" style="position:relative;padding:0;border-bottom:1px solid #171B22">
     <div style="position:relative">
-      <img class="imagine-img" src="uploads/IMG_20241029_211730.jpg" alt="Rotina em casa" style="width:100%;height:560px;object-fit:cover;object-position:50% 45%;display:block;filter:grayscale(.4) brightness(.45)" />
+      <img class="imagine-img" src="uploads/IMG_20241029_211730.jpg" alt="Rotina em casa" style="width:100%;height:560px;object-fit:cover;object-position:62% 22%;display:block;filter:grayscale(.4) brightness(.45)" />
       <div class="imagine-overlay" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,9,13,.95) 0%,rgba(7,9,13,.55) 60%,rgba(7,9,13,.85) 100%);display:flex;align-items:center">
         <div data-reveal style="max-width:1120px;margin:0 auto;padding:0 24px;width:100%">
           <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#3B82F6;margin-bottom:20px">Imagine sua rotina</div>
