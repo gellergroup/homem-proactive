@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Método Homem Proativo</title>
+<meta name="description" content="Descubra como desenvolver hábitos simples de iniciativa, responsabilidade e parceria que fortalecem o relacionamento e tornam a convivência da sua família muito mais leve." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin:0; padding:0; background:#07090D; }
+  * { box-sizing:border-box; }
+  a { color:#3B82F6; text-decoration:none; }
+  a:hover { color:#93B4FF; }
+  ::selection { background:#1E5BFF; color:#fff; }
+  [data-reveal] { opacity:0; transform:translateY(34px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); will-change:opacity,transform; }
+  [data-reveal][data-in="1"] { opacity:1; transform:none; }
+  [data-reveal="left"] { transform:translateX(-40px); }
+  [data-reveal="scale"] { transform:scale(.94); }
+  [data-delay="1"] { transition-delay:.09s; }
+  [data-delay="2"] { transition-delay:.18s; }
+  [data-delay="3"] { transition-delay:.27s; }
+  [data-delay="4"] { transition-delay:.36s; }
+  [data-delay="5"] { transition-delay:.45s; }
+  @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity:1 !important; transform:none !important; } }
+  @keyframes hp-drift { from { transform:scale(1.03) translate3d(0,0,0); } to { transform:scale(1.09) translate3d(0,-1.5%,0); } }
+
+  .cta-primary { display:inline-block; background:#1E5BFF; color:#fff; font-family:Archivo,sans-serif; font-weight:800; font-size:17px; letter-spacing:.06em; text-transform:uppercase; min-height:56px; border:none; cursor:pointer; transition:background .2s ease, box-shadow .2s ease, transform .2s ease; }
+  .cta-primary:hover { background:#1246D6; color:#fff; }
+  .cta-ring { padding:22px 40px; box-shadow:0 0 0 1px #1E5BFF, 8px 8px 0 0 #0C2A7A; }
+  .cta-ring:hover { box-shadow:0 0 0 1px #1E5BFF, 4px 4px 0 0 #0C2A7A; transform:translate(4px,4px); }
+  .cta-shadow { padding:22px 44px; box-shadow:8px 8px 0 0 #0C2A7A; }
+  .cta-shadow:hover { box-shadow:4px 4px 0 0 #0C2A7A; transform:translate(4px,4px); }
+  .cta-flat { display:block; width:100%; text-align:center; padding:22px 24px; font:inherit; letter-spacing:.06em; }
+
+  .modulo-card { background:#0B0E14; padding:36px 30px; transition:background .2s ease; }
+  .modulo-card:hover { background:#101725; }
+
+  /* ---- HERO: carrossel ocupa o fundo do lado direito ---- */
+  .hero { --panel:52%; position:relative; display:flex; align-items:center; min-height:680px; padding:0 24px; border-bottom:1px solid #171B22; overflow:hidden; }
+  .hero-inner { position:relative; z-index:2; width:100%; max-width:1120px; margin:0 auto; padding:92px 0 88px; }
+  .hero-copy { max-width:620px; }
+  .hero-title { font-size:clamp(38px,4.6vw,60px); }
+  .hero-glow { position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(120% 80% at 15% 0%, #10245C 0%, rgba(7,9,13,0) 60%); }
+
+  .hero-carousel { position:absolute; top:0; right:0; bottom:0; z-index:0; width:var(--panel); background:#07090D; overflow:hidden; }
+  .hero-track { display:flex; height:100%; transition:transform .55s cubic-bezier(.4,0,.2,1); }
+  .hero-slide { position:relative; min-width:100%; height:100%; overflow:hidden; }
+  .hero-slide img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(.15) contrast(1.06); animation:hp-drift 18s ease-in-out infinite alternate; }
+  .hero-veil-y { position:absolute; left:0; right:0; bottom:0; height:55%; pointer-events:none; background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,0)); }
+  /* degradê que revela a foto, dentro do painel (fica sob as legendas) */
+  .hero-veil-x { position:absolute; top:0; left:0; bottom:0; width:60%; pointer-events:none;
+    background:linear-gradient(90deg,#07090D 0%,rgba(7,9,13,.97) 26%,rgba(7,9,13,.6) 58%,rgba(7,9,13,0) 100%); }
+  /* máscara curta que cruza a borda do painel num único elemento — mata a emenda de 1px */
+  .hero-edge { position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(90deg,
+      #07090D 0%,
+      #07090D calc(100% - var(--panel) + 3%),
+      rgba(7,9,13,0) calc(100% - var(--panel) + 13%)); }
+
+  .hero-caption { position:absolute; inset:auto 0 0 0; padding:0 40px 104px 44%; opacity:0; transition:opacity .5s ease; pointer-events:none; }
+  .hero-caption[data-active="1"] { opacity:1; }
+  .hero-caption .kicker { display:block; font-family:Archivo,sans-serif; font-weight:800; font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:#3B82F6; margin-bottom:6px; }
+  .hero-caption .line { display:block; font-family:Archivo,sans-serif; font-weight:800; font-size:22px; line-height:1.15; color:#fff; }
+
+  .hero-controls { position:absolute; right:32px; bottom:32px; display:flex; align-items:center; gap:18px; }
+  .hero-note { font-family:Archivo,sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#8B93A1; }
+  .hero-dots { display:flex; gap:8px; }
+  .carousel-dot { width:32px; height:4px; border:none; padding:0; cursor:pointer; background:#4A5262; transition:background .2s ease; }
+  .carousel-nav { width:44px; height:44px; border:none; background:rgba(7,9,13,.72); color:#fff; font-size:20px; cursor:pointer; font-family:Archivo,sans-serif; transition:background .2s ease; }
+  .carousel-nav:hover { background:#1E5BFF; }
+
+  @media (max-width:1180px) {
+    .hero { --panel:46%; }
+    .hero-copy { max-width:520px; }
+    .hero-caption { padding:0 28px 96px 34%; }
+  }
+
+  @media (max-width:960px) {
+    .hero { display:flex; flex-direction:column; align-items:stretch; min-height:0; padding:0; }
+    .hero-inner { order:1; max-width:none; padding:72px 24px 56px; }
+    .hero-copy { max-width:none; }
+    .hero-carousel { order:2; position:relative; width:100%; height:420px; }
+    .hero-veil-x, .hero-edge { display:none; }
+    .hero-caption { padding:0 24px 88px; }
+    .hero-controls { right:24px; bottom:24px; }
+    .hero-note { display:none; }
+  }
+</style>
+</head>
+<body>
+<div style="background:#07090D;color:#EDEFF3;font-family:Barlow,system-ui,sans-serif;font-size:19px;line-height:1.6;overflow-x:hidden">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+
+    <!-- CARROSSEL = fundo do lado direito -->
+    <div class="hero-carousel">
+      <div id="carousel-track" class="hero-track">
+        <div class="hero-slide">
+          <img src="uploads/IMG_20180827_224309681_LL.jpg" alt="Passando roupa" style="object-position:60% 30%" />
+        </div>
+        <div class="hero-slide">
+          <img src="uploads/IMG_20221012_173843.jpg" alt="Bolo pronto" style="object-position:55% 25%" />
+        </div>
+        <div class="hero-slide">
+          <img src="uploads/IMG_20241029_211730.jpg" alt="Limpando o chão" style="object-position:50% 40%" />
+        </div>
+        <div class="hero-slide">
+          <img src="uploads/IMG_20230218_014421.jpg" alt="Preparando a comida" style="object-position:55% 35%" />
+        </div>
+      </div>
+
+      <div class="hero-veil-x"></div>
+      <div class="hero-veil-y"></div>
+
+      <div class="hero-caption" id="cap0" data-active="1"><span class="kicker">Iniciativa 01</span><span class="line">Ninguém pediu. Eu vi e fiz.</span></div>
+      <div class="hero-caption" id="cap1"><span class="kicker">Iniciativa 02</span><span class="line">Cuidar da casa não é favor.</span></div>
+      <div class="hero-caption" id="cap2"><span class="kicker">Iniciativa 03</span><span class="line">Rotina dividida, casa leve.</span></div>
+      <div class="hero-caption" id="cap3"><span class="kicker">Iniciativa 04</span><span class="line">Exemplo, não discurso.</span></div>
+
+      <div class="hero-controls">
+        <span class="hero-note">Rotina real, não é teoria</span>
+        <div class="hero-dots">
+          <button id="dot0" class="carousel-dot" aria-label="Foto 1" style="background:#1E5BFF"></button>
+          <button id="dot1" class="carousel-dot" aria-label="Foto 2"></button>
+          <button id="dot2" class="carousel-dot" aria-label="Foto 3"></button>
+          <button id="dot3" class="carousel-dot" aria-label="Foto 4"></button>
+        </div>
+        <button id="carousel-prev" class="carousel-nav" aria-label="Anterior">‹</button>
+        <button id="carousel-next" class="carousel-nav" aria-label="Próximo">›</button>
+      </div>
+    </div>
+
+    <div class="hero-edge"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-inner">
+      <div class="hero-copy" data-reveal="left">
+        <div style="display:inline-flex;align-items:center;gap:10px;border:1px solid #1E5BFF;padding:8px 14px;margin-bottom:32px">
+          <span style="width:7px;height:7px;background:#1E5BFF;display:block"></span>
+          <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#9FB8FF">Método Homem Proativo</span>
+        </div>
+        <h1 class="hero-title" style="font-family:Archivo,sans-serif;font-weight:900;line-height:0.98;letter-spacing:-0.025em;text-transform:uppercase;margin:0 0 28px;text-wrap:balance">Você não precisa ser um marido <span style="color:#3B82F6">perfeito</span>.</h1>
+        <p style="font-size:24px;line-height:1.45;color:#C7CCD6;margin:0 0 22px;max-width:44ch">Só precisa deixar de ser alguém que espera sempre ser lembrado.</p>
+        <p style="font-size:19px;color:#8B93A1;margin:0 0 40px;max-width:52ch">Descubra como desenvolver hábitos simples de iniciativa, responsabilidade e parceria que fortalecem o relacionamento e tornam a convivência da sua família muito mais leve.</p>
+        <a href="#oferta" class="cta-primary cta-ring">Quero me tornar um homem proativo</a>
+        <div style="display:flex;gap:28px;margin-top:36px;flex-wrap:wrap;font-family:Archivo,sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5E6674">
+          <span>6 Módulos</span><span>Acesso imediato</span><span>Garantia de 7 dias</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DOR ===== -->
+  <section style="padding:96px 24px;border-bottom:1px solid #171B22">
+    <div style="max-width:900px;margin:0 auto">
+      <h2 data-reveal style="font-family:Archivo,sans-serif;font-weight:900;font-size:46px;line-height:1.02;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 36px">Ela não reclama<br /><span style="color:#3B82F6">da louça</span></h2>
+      <p data-reveal data-delay="1" style="font-size:22px;color:#C7CCD6;margin:0 0 32px;max-width:60ch">Ela reclama porque sente que está carregando tudo sozinha. Enquanto você acredita que está ajudando… ela sente que administra tudo.</p>
+      <div data-reveal data-delay="2" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#171B22;border:1px solid #171B22;margin-bottom:36px">
+        <div style="background:#0B0E14;padding:26px 22px;font-family:Archivo,sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;letter-spacing:.04em">A casa</div>
+        <div style="background:#0B0E14;padding:26px 22px;font-family:Archivo,sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;letter-spacing:.04em">Os filhos</div>
+        <div style="background:#0B0E14;padding:26px 22px;font-family:Archivo,sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;letter-spacing:.04em">A rotina</div>
+        <div style="background:#0B0E14;padding:26px 22px;font-family:Archivo,sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;letter-spacing:.04em">Os compromissos</div>
+        <div style="background:#0B0E14;padding:26px 22px;font-family:Archivo,sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;letter-spacing:.04em">As contas</div>
+        <div style="background:#0B0E14;padding:26px 22px;font-family:Archivo,sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;letter-spacing:.04em;color:#3B82F6">E ainda você</div>
+      </div>
+      <p style="color:#8B93A1;margin:0 0 56px;max-width:60ch">Talvez essa nunca tenha sido sua intenção. Mas é exatamente assim que milhares de mulheres descrevem a rotina dentro de casa.</p>
+
+      <div data-reveal="left" style="border-left:3px solid #1E5BFF;padding-left:28px;margin-bottom:48px">
+        <h3 style="font-family:Archivo,sans-serif;font-weight:800;font-size:28px;line-height:1.2;margin:0 0 20px">O desgaste do casamento quase nunca acontece por causa de uma grande discussão.</h3>
+        <p style="color:#8B93A1;margin:0">Ele acontece pelas pequenas situações repetidas diariamente.</p>
+      </div>
+      <div data-reveal style="display:flex;flex-direction:column;gap:14px;margin-bottom:56px;max-width:520px">
+        <div style="display:flex;align-items:center;gap:16px;background:#0B0E14;border:1px solid #171B22;padding:18px 22px"><span style="font-family:Archivo,sans-serif;font-weight:900;color:#1E5BFF;font-size:14px">01</span> Quando ela precisa pedir.</div>
+        <div style="display:flex;align-items:center;gap:16px;background:#0B0E14;border:1px solid #171B22;padding:18px 22px"><span style="font-family:Archivo,sans-serif;font-weight:900;color:#1E5BFF;font-size:14px">02</span> Quando ela precisa lembrar.</div>
+        <div style="display:flex;align-items:center;gap:16px;background:#0B0E14;border:1px solid #171B22;padding:18px 22px"><span style="font-family:Archivo,sans-serif;font-weight:900;color:#1E5BFF;font-size:14px">03</span> Quando ela precisa cobrar.</div>
+        <div style="display:flex;align-items:center;gap:16px;background:#0B0E14;border:1px solid #171B22;padding:18px 22px"><span style="font-family:Archivo,sans-serif;font-weight:900;color:#1E5BFF;font-size:14px">04</span> Quando ela sente que está sozinha.</div>
+      </div>
+      <p data-reveal style="font-family:Archivo,sans-serif;font-weight:900;font-size:34px;line-height:1.15;text-transform:uppercase;margin:0">O problema nunca foi a toalha. Nem a louça. Nem o lixo.<br /><span style="color:#3B82F6">O problema é a falta de iniciativa.</span></p>
+    </div>
+  </section>
+
+  <!-- ===== VERDADE ===== -->
+  <section style="padding:96px 24px;background:#0B0E14;border-bottom:1px solid #171B22">
+    <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
+      <div data-reveal="left">
+        <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#3B82F6;margin-bottom:20px">A verdade que poucos falam</div>
+        <h2 style="font-family:Archivo,sans-serif;font-weight:900;font-size:42px;line-height:1.05;text-transform:uppercase;margin:0 0 24px">Muitos homens acreditam que são parceiros.</h2>
+        <p style="color:#8B93A1;margin:0">Porque trabalham. Pagam as contas. Amam a família. Mas parceria vai muito além disso.</p>
+      </div>
+      <div data-reveal data-delay="2" style="display:grid;gap:1px;background:#171B22;border:1px solid #171B22">
+        <div style="background:#07090D;padding:28px;font-family:Archivo,sans-serif;font-weight:800;font-size:26px;text-transform:uppercase">Perceber</div>
+        <div style="background:#07090D;padding:28px;font-family:Archivo,sans-serif;font-weight:800;font-size:26px;text-transform:uppercase">Agir</div>
+        <div style="background:#07090D;padding:28px;font-family:Archivo,sans-serif;font-weight:800;font-size:26px;text-transform:uppercase">Antecipar</div>
+        <div style="background:#07090D;padding:28px;font-family:Archivo,sans-serif;font-weight:800;font-size:26px;text-transform:uppercase">Compartilhar</div>
+        <div style="background:#1E5BFF;padding:28px;font-family:Barlow,sans-serif;font-size:19px;color:#fff">Sem esperar que alguém peça.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MÉTODO ===== -->
+  <section style="padding:96px 24px;border-bottom:1px solid #171B22">
+    <div data-reveal style="max-width:900px;margin:0 auto;text-align:center">
+      <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#3B82F6;margin-bottom:24px">Apresentação do método</div>
+      <h2 style="font-family:Archivo,sans-serif;font-weight:900;font-size:52px;line-height:1.02;text-transform:uppercase;margin:0 0 28px">Método<br />Homem Proativo</h2>
+      <p style="font-size:21px;color:#C7CCD6;margin:0 auto 44px;max-width:56ch">Simples, prático e objetivo: hábitos que fortalecem o relacionamento através da iniciativa e da responsabilidade.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <span style="border:1px solid #2A303B;padding:12px 20px;font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#8B93A1">Sem discursos motivacionais</span>
+        <span style="border:1px solid #2A303B;padding:12px 20px;font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#8B93A1">Sem teorias complicadas</span>
+        <span style="border:1px solid #2A303B;padding:12px 20px;font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#8B93A1">Sem promessas milagrosas</span>
+      </div>
+      <p style="color:#8B93A1;margin:36px 0 0">Apenas pequenas mudanças de comportamento que fazem diferença todos os dias.</p>
+    </div>
+  </section>
+
+  <!-- ===== MENTOR ===== -->
+  <section style="padding:96px 24px;background:#0B0E14;border-bottom:1px solid #171B22">
+    <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:start">
+      <div data-reveal="left">
+        <img src="uploads/edt15.jpg" alt="Max" style="width:100%;height:600px;object-fit:cover;object-position:50% 22%;display:block;border:1px solid #1B2029" />
+        <div style="background:#1E5BFF;padding:18px 22px;font-family:Archivo,sans-serif;font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#fff">Max, criador do método</div>
+      </div>
+      <div data-reveal data-delay="2">
+        <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#3B82F6;margin-bottom:20px">Conheça seu mentor</div>
+        <h2 style="font-family:Archivo,sans-serif;font-weight:900;font-size:40px;line-height:1.05;text-transform:uppercase;margin:0 0 28px">Eu não criei esse método porque li em um livro.</h2>
+        <div style="display:flex;flex-direction:column;gap:20px;color:#A8AFBB">
+          <p style="margin:0">Eu criei porque vivi essa realidade dentro da minha própria casa. Meu nome é Max, e sempre acreditei que uma família forte é construída através de pequenas atitudes diárias.</p>
+          <p style="margin:0">Cresci em um ambiente onde responsabilidade, parceria e participação faziam parte da rotina. Aprendi desde cedo que cuidar da casa e da família nunca foi uma forma de “ajudar”, mas uma responsabilidade compartilhada.</p>
+          <p style="margin:0">Com o passar dos anos, percebi que muitos homens amam profundamente suas famílias, mas simplesmente nunca aprenderam a desenvolver hábitos de iniciativa dentro de casa. Não porque não se importam, mas porque ninguém os ensinou a enxergar aquilo que faz diferença na convivência diária.</p>
+          <p style="margin:0">Foi dessa percepção que nasceu o Método Homem Proativo. Um método prático, objetivo e baseado em mudanças reais de comportamento, criado para ajudar homens a deixarem de ser espectadores da própria casa e se tornarem parceiros presentes, responsáveis e participativos.</p>
+          <p style="margin:0;font-family:Archivo,sans-serif;font-weight:800;font-size:24px;line-height:1.2;color:#EDEFF3">Relacionamentos saudáveis não são construídos apenas com palavras. São construídos com atitudes.</p>
+          <p style="margin:0">Hoje, minha missão é mostrar que qualquer homem pode desenvolver esses hábitos e fortalecer sua família, seu casamento e o exemplo que deixa para seus filhos. A mudança começa em pequenas ações. E ela pode começar hoje.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MÓDULOS ===== -->
+  <section style="padding:96px 24px;border-bottom:1px solid #171B22">
+    <div style="max-width:1120px;margin:0 auto">
+      <h2 data-reveal style="font-family:Archivo,sans-serif;font-weight:900;font-size:46px;line-height:1.02;text-transform:uppercase;margin:0 0 48px">O que você<br /><span style="color:#3B82F6">vai aprender</span></h2>
+      <div data-reveal data-delay="1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#171B22;border:1px solid #171B22">
+        <div class="modulo-card">
+          <div style="font-family:Archivo,sans-serif;font-weight:900;font-size:38px;color:#1E5BFF;line-height:1;margin-bottom:20px">01</div>
+          <p style="margin:0;font-size:20px;color:#EDEFF3">Por que pequenas atitudes têm tanto impacto no relacionamento.</p>
+        </div>
+        <div class="modulo-card">
+          <div style="font-family:Archivo,sans-serif;font-weight:900;font-size:38px;color:#1E5BFF;line-height:1;margin-bottom:20px">02</div>
+          <p style="margin:0;font-size:20px;color:#EDEFF3">Como desenvolver iniciativa sem depender de lembretes.</p>
+        </div>
+        <div class="modulo-card">
+          <div style="font-family:Archivo,sans-serif;font-weight:900;font-size:38px;color:#1E5BFF;line-height:1;margin-bottom:20px">03</div>
+          <p style="margin:0;font-size:20px;color:#EDEFF3">A carga mental invisível que muitos homens nunca perceberam.</p>
+        </div>
+        <div class="modulo-card">
+          <div style="font-family:Archivo,sans-serif;font-weight:900;font-size:38px;color:#1E5BFF;line-height:1;margin-bottom:20px">04</div>
+          <p style="margin:0;font-size:20px;color:#EDEFF3">Como dividir responsabilidades de forma natural.</p>
+        </div>
+        <div class="modulo-card">
+          <div style="font-family:Archivo,sans-serif;font-weight:900;font-size:38px;color:#1E5BFF;line-height:1;margin-bottom:20px">05</div>
+          <p style="margin:0;font-size:20px;color:#EDEFF3">Hábitos que reduzem conflitos dentro da família.</p>
+        </div>
+        <div class="modulo-card">
+          <div style="font-family:Archivo,sans-serif;font-weight:900;font-size:38px;color:#1E5BFF;line-height:1;margin-bottom:20px">06</div>
+          <p style="margin:0;font-size:20px;color:#EDEFF3">Como manter essas mudanças no longo prazo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PARA QUEM ===== -->
+  <section style="padding:96px 24px;background:#0B0E14;border-bottom:1px solid #171B22">
+    <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px">
+      <div data-reveal="left" style="border:1px solid #1E5BFF;padding:40px 34px">
+        <h3 style="font-family:Archivo,sans-serif;font-weight:900;font-size:26px;text-transform:uppercase;margin:0 0 28px;color:#fff">Para quem é</h3>
+        <div style="display:flex;flex-direction:column;gap:16px;color:#C7CCD6">
+          <div style="display:flex;gap:14px"><span style="color:#3B82F6;font-weight:700">✔</span> Para homens casados ou em relacionamentos duradouros.</div>
+          <div style="display:flex;gap:14px"><span style="color:#3B82F6;font-weight:700">✔</span> Para homens em relacionamento sério.</div>
+          <div style="display:flex;gap:14px"><span style="color:#3B82F6;font-weight:700">✔</span> Para pais.</div>
+          <div style="display:flex;gap:14px"><span style="color:#3B82F6;font-weight:700">✔</span> Para quem deseja fortalecer a família.</div>
+          <div style="display:flex;gap:14px"><span style="color:#3B82F6;font-weight:700">✔</span> Para quem acredita que amor também se demonstra através de atitudes.</div>
+        </div>
+      </div>
+      <div data-reveal data-delay="2" style="border:1px solid #2A303B;padding:40px 34px">
+        <h3 style="font-family:Archivo,sans-serif;font-weight:900;font-size:26px;text-transform:uppercase;margin:0 0 28px;color:#8B93A1">Para quem não é</h3>
+        <div style="display:flex;flex-direction:column;gap:16px;color:#7C8494">
+          <div style="display:flex;gap:14px"><span style="font-weight:700">✘</span> Para quem procura fórmulas mágicas.</div>
+          <div style="display:flex;gap:14px"><span style="font-weight:700">✘</span> Para quem acredita que mudar depende apenas da outra pessoa.</div>
+          <div style="display:flex;gap:14px"><span style="font-weight:700">✘</span> Para quem não está disposto a desenvolver novos hábitos.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== O QUE MUDA ===== -->
+  <section style="padding:96px 24px;border-bottom:1px solid #171B22">
+    <div style="max-width:1000px;margin:0 auto">
+      <h2 data-reveal style="font-family:Archivo,sans-serif;font-weight:900;font-size:46px;line-height:1.02;text-transform:uppercase;margin:0 0 48px">O que muda<br /><span style="color:#3B82F6">na prática</span></h2>
+      <div style="display:flex;flex-direction:column;gap:1px;background:#171B22;border:1px solid #171B22">
+        <div style="background:#0B0E14;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding:26px 30px">
+          <span style="color:#6B7382;text-decoration:line-through">Você deixa de esperar</span>
+          <span style="color:#1E5BFF;font-family:Archivo,sans-serif;font-weight:900">→</span>
+          <span style="font-family:Archivo,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase">Começa a perceber</span>
+        </div>
+        <div style="background:#0B0E14;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding:26px 30px">
+          <span style="color:#6B7382;text-decoration:line-through">Você deixa de “ajudar”</span>
+          <span style="color:#1E5BFF;font-family:Archivo,sans-serif;font-weight:900">→</span>
+          <span style="font-family:Archivo,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase">Assume responsabilidade</span>
+        </div>
+        <div style="background:#0B0E14;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding:26px 30px">
+          <span style="color:#6B7382;text-decoration:line-through">Você reduz cobranças</span>
+          <span style="color:#1E5BFF;font-family:Archivo,sans-serif;font-weight:900">→</span>
+          <span style="font-family:Archivo,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase">Aumenta a parceria</span>
+        </div>
+        <div style="background:#0B0E14;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding:26px 30px">
+          <span style="color:#6B7382;text-decoration:line-through">Desconfiança e distância</span>
+          <span style="color:#1E5BFF;font-family:Archivo,sans-serif;font-weight:900">→</span>
+          <span style="font-family:Archivo,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase">Confiança e admiração</span>
+        </div>
+        <div style="background:#0B0E14;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding:26px 30px">
+          <span style="color:#6B7382;text-decoration:line-through">Casa desequilibrada</span>
+          <span style="color:#1E5BFF;font-family:Archivo,sans-serif;font-weight:900">→</span>
+          <span style="font-family:Archivo,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase">Família equilibrada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== IMAGINE ===== -->
+  <section style="position:relative;padding:0;border-bottom:1px solid #171B22">
+    <div style="position:relative">
+      <img src="uploads/IMG_20241029_211730.jpg" alt="Rotina em casa" style="width:100%;height:560px;object-fit:cover;object-position:50% 45%;display:block;filter:grayscale(.4) brightness(.45)" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,9,13,.95) 0%,rgba(7,9,13,.55) 60%,rgba(7,9,13,.85) 100%);display:flex;align-items:center">
+        <div data-reveal style="max-width:1120px;margin:0 auto;padding:0 24px;width:100%">
+          <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#3B82F6;margin-bottom:20px">Imagine sua rotina</div>
+          <h2 style="font-family:Archivo,sans-serif;font-weight:900;font-size:44px;line-height:1.05;text-transform:uppercase;margin:0 0 28px;max-width:20ch">Chegar em casa e resolver antes que alguém peça.</h2>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;max-width:640px">
+            <span style="border:1px solid #3B82F6;color:#C7D8FF;padding:10px 18px;font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase">Sua esposa mais leve</span>
+            <span style="border:1px solid #3B82F6;color:#C7D8FF;padding:10px 18px;font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase">Filhos aprendendo pelo exemplo</span>
+            <span style="border:1px solid #3B82F6;color:#C7D8FF;padding:10px 18px;font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase">Menos discussões</span>
+            <span style="border:1px solid #3B82F6;color:#C7D8FF;padding:10px 18px;font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase">Mais respeito</span>
+            <span style="border:1px solid #3B82F6;color:#C7D8FF;padding:10px 18px;font-family:Archivo,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase">Mais conexão</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DEPOIMENTOS ===== -->
+  <section style="padding:96px 24px;background:#0B0E14;border-bottom:1px solid #171B22">
+    <div style="max-width:1120px;margin:0 auto">
+      <h2 data-reveal style="font-family:Archivo,sans-serif;font-weight:900;font-size:40px;text-transform:uppercase;margin:0 0 12px">Depoimentos</h2>
+      <p style="color:#6B7382;font-family:monospace;font-size:13px;margin:0 0 36px">prints de conversas reais em breve</p>
+      <div data-reveal data-delay="1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+        <div style="aspect-ratio:9/14;border:1px dashed #2A303B;background:repeating-linear-gradient(135deg,#0E1219 0 10px,#0B0E14 10px 20px);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:12px;color:#5E6674;text-align:center;padding:16px">print do WhatsApp 01</div>
+        <div style="aspect-ratio:9/14;border:1px dashed #2A303B;background:repeating-linear-gradient(135deg,#0E1219 0 10px,#0B0E14 10px 20px);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:12px;color:#5E6674;text-align:center;padding:16px">print do WhatsApp 02</div>
+        <div style="aspect-ratio:9/14;border:1px dashed #2A303B;background:repeating-linear-gradient(135deg,#0E1219 0 10px,#0B0E14 10px 20px);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:12px;color:#5E6674;text-align:center;padding:16px">print do WhatsApp 03</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BÔNUS ===== -->
+  <section style="padding:96px 24px;border-bottom:1px solid #171B22">
+    <div style="max-width:1120px;margin:0 auto">
+      <h2 data-reveal style="font-family:Archivo,sans-serif;font-weight:900;font-size:40px;text-transform:uppercase;margin:0 0 40px">Bônus <span style="color:#3B82F6">inclusos</span></h2>
+      <div data-reveal data-delay="1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+        <div style="border:1px solid #1B2029;padding:34px 28px;background:#0B0E14">
+          <div style="font-family:Archivo,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#3B82F6;margin-bottom:18px">Bônus 01</div>
+          <h3 style="font-family:Archivo,sans-serif;font-weight:800;font-size:24px;margin:0 0 12px">Checklist Homem Proativo</h3>
+          <p style="margin:0;color:#8B93A1;font-size:17px">As pequenas atitudes que fazem diferença todos os dias.</p>
+        </div>
+        <div style="border:1px solid #1B2029;padding:34px 28px;background:#0B0E14">
+          <div style="font-family:Archivo,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#3B82F6;margin-bottom:18px">Bônus 02</div>
+          <h3 style="font-family:Archivo,sans-serif;font-weight:800;font-size:24px;margin:0 0 12px">Planner de Responsabilidades Familiares</h3>
+          <p style="margin:0;color:#8B93A1;font-size:17px">Para dividir a rotina sem cobrança e sem lembrete.</p>
+        </div>
+        <div style="border:1px solid #1B2029;padding:34px 28px;background:#0B0E14">
+          <div style="font-family:Archivo,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#3B82F6;margin-bottom:18px">Bônus 03</div>
+          <h3 style="font-family:Archivo,sans-serif;font-weight:800;font-size:24px;margin:0 0 12px">Plano de Construção de Hábitos</h3>
+          <p style="margin:0;color:#8B93A1;font-size:17px">O caminho para manter a mudança no longo prazo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OFERTA ===== -->
+  <section id="oferta" style="padding:96px 24px;background:#0B0E14;border-bottom:1px solid #171B22">
+    <div data-reveal="scale" style="max-width:920px;margin:0 auto;border:1px solid #1E5BFF;background:#07090D">
+      <div style="background:#1E5BFF;padding:16px 32px;font-family:Archivo,sans-serif;font-weight:800;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#fff">Oferta de lançamento</div>
+      <div style="padding:48px 40px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+        <div>
+          <h2 style="font-family:Archivo,sans-serif;font-weight:900;font-size:34px;line-height:1.05;text-transform:uppercase;margin:0 0 28px">Método<br />Homem Proativo</h2>
+          <div style="display:flex;flex-direction:column;gap:12px;color:#C7CCD6">
+            <div style="display:flex;gap:12px"><span style="color:#3B82F6">✔</span> Curso completo</div>
+            <div style="display:flex;gap:12px"><span style="color:#3B82F6">✔</span> Acesso imediato</div>
+            <div style="display:flex;gap:12px"><span style="color:#3B82F6">✔</span> 3 bônus exclusivos</div>
+            <div style="display:flex;gap:12px"><span style="color:#3B82F6">✔</span> Garantia de 7 dias</div>
+          </div>
+        </div>
+        <div>
+          <div style="color:#6B7382;text-decoration:line-through;font-size:20px;margin-bottom:8px">De R$ 697</div>
+          <div style="font-family:Archivo,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8B93A1;margin-bottom:6px">Por apenas</div>
+          <div style="font-family:Archivo,sans-serif;font-weight:900;font-size:54px;line-height:1;letter-spacing:-.02em;margin-bottom:8px">12x de R$ 39,90</div>
+          <div style="color:#C7CCD6;margin-bottom:30px">ou R$ 397 à vista</div>
+          <a href="#oferta" class="cta-primary cta-flat">Quero me tornar um homem proativo</a>
+          <p style="font-family:monospace;font-size:12px;color:#5E6674;margin:14px 0 0;text-align:center">compra segura · acesso na hora</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GARANTIA + FAQ ===== -->
+  <section style="padding:96px 24px;border-bottom:1px solid #171B22">
+    <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:0.8fr 1.2fr;gap:64px;align-items:start">
+      <div data-reveal="left" style="border:1px solid #1B2029;padding:36px 30px;background:#0B0E14">
+        <div style="font-family:Archivo,sans-serif;font-weight:900;font-size:64px;line-height:1;color:#1E5BFF;margin-bottom:16px">7</div>
+        <h3 style="font-family:Archivo,sans-serif;font-weight:800;font-size:24px;text-transform:uppercase;margin:0 0 18px">Dias de garantia</h3>
+        <p style="margin:0 0 14px;color:#8B93A1">Assista às aulas. Conheça o método. Se perceber que ele não faz sentido para você, basta solicitar o reembolso dentro do prazo previsto na plataforma.</p>
+        <p style="margin:0;color:#8B93A1">Sem burocracia. Sem perguntas desnecessárias.</p>
+      </div>
+      <div data-reveal data-delay="2">
+        <h2 style="font-family:Archivo,sans-serif;font-weight:900;font-size:34px;text-transform:uppercase;margin:0 0 32px">Perguntas frequentes</h2>
+        <div style="display:flex;flex-direction:column;gap:1px;background:#171B22;border-top:1px solid #171B22;border-bottom:1px solid #171B22">
+          <div style="background:#07090D;padding:24px 4px">
+            <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:19px;margin-bottom:10px">Funciona mesmo se meu relacionamento já estiver desgastado?</div>
+            <p style="margin:0;color:#8B93A1;font-size:17px">O método ensina mudanças de comportamento e construção de hábitos. Os resultados dependem da aplicação prática de cada participante.</p>
+          </div>
+          <div style="background:#07090D;padding:24px 4px">
+            <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:19px;margin-bottom:10px">Quanto tempo dura o curso?</div>
+            <p style="margin:0;color:#8B93A1;font-size:17px">Você pode assistir no seu ritmo.</p>
+          </div>
+          <div style="background:#07090D;padding:24px 4px">
+            <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:19px;margin-bottom:10px">Preciso fazer junto com minha esposa?</div>
+            <p style="margin:0;color:#8B93A1;font-size:17px">Não. O método foi desenvolvido para aplicação individual.</p>
+          </div>
+          <div style="background:#07090D;padding:24px 4px">
+            <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:19px;margin-bottom:10px">Quanto tempo tenho acesso?</div>
+            <p style="margin:0;color:#8B93A1;font-size:17px">Ajustar conforme a plataforma.</p>
+          </div>
+          <div style="background:#07090D;padding:24px 4px">
+            <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:19px;margin-bottom:10px">Recebo certificado?</div>
+            <p style="margin:0;color:#8B93A1;font-size:17px">Ajustar conforme a plataforma.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FECHAMENTO ===== -->
+  <section style="padding:110px 24px 96px;text-align:center;position:relative">
+    <div style="position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 100%, #10245C 0%, rgba(7,9,13,0) 65%);pointer-events:none"></div>
+    <div data-reveal style="position:relative;max-width:820px;margin:0 auto">
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:21px;color:#8B93A1;margin-bottom:36px">
+        <span>Sua esposa não precisa de um marido perfeito.</span>
+        <span>Seus filhos não precisam de um pai perfeito.</span>
+        <span>Sua família não precisa de alguém que promete.</span>
+      </div>
+      <h2 style="font-family:Archivo,sans-serif;font-weight:900;font-size:56px;line-height:1;text-transform:uppercase;margin:0 0 32px">Ela precisa de alguém que toma <span style="color:#3B82F6">iniciativa</span>.</h2>
+      <p style="font-size:22px;color:#C7CCD6;margin:0 0 48px">Porque amor não é apenas sentimento. <strong style="color:#fff">Amor também é atitude.</strong></p>
+      <a href="#oferta" class="cta-primary cta-shadow">Quero me tornar um homem proativo</a>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid #171B22;padding:36px 24px;text-align:center;font-family:monospace;font-size:12px;color:#4E5663">
+    Método Homem Proativo · Todos os direitos reservados
+  </footer>
+</div>
+
+<script>
+(function () {
+  var i = 0;
+  var track = document.getElementById('carousel-track');
+  var dots = [0, 1, 2, 3].map(function (n) { return document.getElementById('dot' + n); });
+  var caps = [0, 1, 2, 3].map(function (n) { return document.getElementById('cap' + n); });
+  var ACTIVE = '#1E5BFF';
+  var INACTIVE = '#4A5262';
+  var timer;
+
+  function render() {
+    track.style.transform = 'translateX(' + (-100 * i) + '%)';
+    dots.forEach(function (d, n) { d.style.background = n === i ? ACTIVE : INACTIVE; });
+    caps.forEach(function (c, n) { c.setAttribute('data-active', n === i ? '1' : '0'); });
+  }
+  function go(n) { i = n; render(); restart(); }
+  function next() { go((i + 1) % 4); }
+  function prev() { go((i + 3) % 4); }
+  function restart() { clearInterval(timer); timer = setInterval(next, 6000); }
+
+  document.getElementById('carousel-prev').addEventListener('click', prev);
+  document.getElementById('carousel-next').addEventListener('click', next);
+  dots.forEach(function (d, n) { d.addEventListener('click', function () { go(n); }); });
+
+  render();
+  restart();
+})();
+
+(function () {
+  function reveal() {
+    var h = window.innerHeight || 800;
+    document.querySelectorAll('[data-reveal]:not([data-in])').forEach(function (el) {
+      if (el.getBoundingClientRect().top < h * 0.92) el.setAttribute('data-in', '1');
+    });
+  }
+  reveal();
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.setAttribute('data-in', '1'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) { io.observe(el); });
+  }
+  window.addEventListener('scroll', reveal, { passive: true });
+  document.addEventListener('scroll', reveal, { passive: true, capture: true });
+  setTimeout(function () {
+    if (!document.querySelector('[data-reveal][data-in="1"]')) {
+      document.querySelectorAll('[data-reveal]').forEach(function (el) { el.setAttribute('data-in', '1'); });
+    }
+  }, 2500);
+})();
+</script>
+</body>
+</html>
