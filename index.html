@@ -83,7 +83,9 @@
     .hero-inner { order:1; max-width:none; padding:72px 24px 56px; }
     .hero-copy { max-width:none; }
     /* as 4 fotos sao 3:4 — o painel adota a mesma proporcao e nada e cortado */
-    .hero-carousel { order:2; position:relative; width:100%; height:auto; aspect-ratio:3/4; max-height:78vh; }
+    .hero-carousel { order:2; position:relative; width:100%; height:auto; aspect-ratio:3/4; }
+    /* o zoom do drift reintroduziria recorte justamente aqui, onde ele foi zerado */
+    .hero-slide img { animation:none !important; object-position:50% 50% !important; }
     .hero-veil-x, .hero-edge { display:none; }
     .hero-caption { padding:0 24px 88px; }
     .hero-controls { right:24px; bottom:24px; }
